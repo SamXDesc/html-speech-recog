@@ -73,11 +73,12 @@
 
 <script type="application/javascript">
     window.addEventListener('DOMContentLoaded', function (e) {
-        var speakBtn = document.querySelector('#speakBtn');
+        var speakBtn    = document.querySelector('#speakBtn');
         var voiceResult = document.querySelector('#voiceResult');
-        if (window.SpeechRecognition || window.webkitSpeechRecognition) {
 
-            var recognition = new webkitSpeechRecognition();
+        if (window.SpeechRecognition || window.webkitSpeechRecognition) {
+            var speechRecog = SpeechRecognition || webkitSpeechRecognition;
+            var recognition = new speechRecog();
 
             speakBtn.addEventListener('click', function (e) {
                 recognition.start();
@@ -97,10 +98,6 @@
                     document.body.classList.toggle('montanhas');
                     document.getElementById('content').classList.toggle('bg-dark');
                     document.getElementById('voiceResult').innerHTML += '<br/><p>Estilo alterado para ' + result + '</p>';
-                }
-
-                if (result.toLowerCase() === 'situação') {
-                    document.getElementById('voiceResult').innerHTML += '<br/><p>Não sei, pergunta para o Caio.</p>';
                 }
 
                 if (result.toLowerCase() === 'autor') {
